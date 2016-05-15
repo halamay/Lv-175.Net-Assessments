@@ -1,0 +1,85 @@
+﻿@inherits System.Web.Mvc.WebViewPage
+
+
+
+@inherits System.Web.Mvc.WebViewPage
+@{
+    Layout = null;
+}
+@Scripts.Render("~/Scripts/Directives")
+
+<div ng-controller="AttachmentsController">
+
+    <h3>Attachments of {{assessmentName}}</h3>
+
+    <div class="panel panel-default add-attachment-panel">
+
+        <div class="panel-heading">
+            <button ng-click="triggerAddActive()" ng-class="{'active' : addActive > 0}" class="btn btn-primary btn"><span class="glyphicon glyphicon-plus"></span> New Attachment</button>
+        </div>
+
+        <div ng-show="addActive > 0" class="panel-body">
+
+            <label for="File">File (max size: {{maxSize | filesize}}):</label>
+
+            <div id="dropZone" class="file-drop-area" ng-class="{'drop-default' : dragAreaState == 'default', 'drop-loaded': dragAreaState == 'loaded', 'drop-wrong': dragAreaState == 'file-too-big'}">
+                <div ng-show="dragAreaState == 'default'">
+                    <h4>Drop your file here.</h4>
+                </div>
+                <div ng-show="dragAreaState == 'file-too-big'">
+                    <h4>File is too big!</h4>
+                    <h5>(drop another file)</h5>
+                </div>
+                <div ng-show="dragAreaState == 'loaded'">
+                    <table class="table">
+                        <tr>
+                            <td>Name:</td>
+                            <td>{{file.name}}</td>
+                        </tr>
+                        <tr>
+                            <td>Size:</td>
+                            <td>{{file.size | filesize}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <label for="Comment">Comment:</label>
+            <br />
+            <textarea ng-model="comment" maxlength="200"/>
+
+            <div>{{uploadText}}</div>
+        </div>
+
+        <div ng-show="addActive > 0" class="panel-footer">
+            <button class="btn btn-primary" ng-class="{'disabled' : dragAreaState !='loaded'}" ng-click="addAttachment()">Add</button>
+            <button class="btn btn-default" ng-class="{'disabled' : dragAreaState != 'loaded' && !comment}" ng-click="clearAddForm()">Clear</button>
+        </div>
+    </div>
+
+
+    <div ng-show="attachments.length">
+        <table class="tableAttachments table-striped">
+            <thead>
+                <tr>                  
+                    <th class="col-md-4">File Name</th>
+                    <th class="col-md-2">Size</th>
+                    <th class="col-md-5">Comment</th>
+                    <th class="col-md-1"></th>
+
+                </tr>
+            </thead>
+            <tbody>
+            <tbody>
+                <tr ng-repeat="attachment in attachments">                  
+                    <td class="col-md-4"><a href="" ng-click="downloadFile(attachment.Name)">{{attachment.Name}}</a></td>
+                    <td class="col-md-2">{{attachment.Size | filesize}}</td>
+                    <td class="col-md-5">{{attachment.Comment}}</td>
+                    <td class="col-md-1"><button class="btn btn-default btn-sm" ng-click="openDeleteConfirmWindow(attachment.Id)"><span class="glyphicon glyphicon-remove"></span> Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3 ng-hide="attachments.length">No attachments for this assessment.</h3>
+</div>

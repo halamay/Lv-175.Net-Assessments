@@ -1,0 +1,43 @@
+﻿@inherits System.Web.Mvc.WebViewPage
+@{
+    Layout = null;
+}
+
+<div ng-app="Assessments" ng-controller="ReportsController" style="margin-left: 5px; margin-right: 5px">
+    <h2>Quarterly Report </h2>
+    <label for="FinishDate">Finish Date Filter:</label>
+    <input type="date" name="FinishDate" ng-change="filterChange()" ng-model="finishdate">
+    <p></p>
+
+    <table ng-show="QReport.length" class="tableSS">
+        <thead>
+            <tr>
+                <th>Unit</th>
+                <th>Assessments</th>
+                <th>Average Indicator Score</th>
+                <th>Recommendations</th>
+                <th>Improvements</th>
+                <th>Time Spent by Coordinator</th>
+                <th>Time Spent by Expert</th>
+                <th>Service Quality Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="ar in QReport">
+                <td title="{{ar.UnitName}}">{{ar.UnitName}}</td>
+                <td class="decimalNumber" title="{{ar.Assessments}}">{{ar.Assessments}}</td>
+                <td class="decimalNumber" title="{{ar.Average}}">{{ar.Average}}</td>
+                <td class="decimalNumber" title="{{ar.Recommendations}}">{{ar.Recommendations}}</td>
+                <td class="decimalNumber" title="{{ar.Improvements}}">{{ar.Improvements}}</td>
+                <td class="decimalNumber" title="{{ar.CoordinatorTime}}">{{ar.CoordinatorTime}}</td>
+                <td class="decimalNumber" title="{{ar.ExpertTime}}">{{ar.ExpertTime}}</td>
+                <td class="decimalNumber" title="{{ar.ServiceQualityScore}}">{{ar.ServiceQualityScore}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <br />
+    <button ng-show="QReport.length"  class="btn btn-success" ng-click="exportData()">Export to MS Excel</button>
+    <h3 ng-show="QReport.length == 0">No Data For Quarterly Report!</h3>
+</div>
+
+

@@ -1,0 +1,5 @@
+D:\Softserve\TFS Workspace\LV-175.Net\Assessment\AssessmentsWeb.Tests\bin\Debug\AssessmentsWeb.Tests.dll
+D:\Softserve\TFS Workspace\LV-175.Net\Assessment\AssessmentsWeb.Tests\bin\Debug\AssessmentsWeb.Tests.pdb
+D:\Softserve\TFS Workspace\LV-175.Net\Assessment\AssessmentsWeb.Tests\obj\Debug\AssessmentsWeb.Tests.csprojResolveAssemblyReference.cache
+D:\Softserve\TFS Workspace\LV-175.Net\Assessment\AssessmentsWeb.Tests\obj\Debug\AssessmentsWeb.Tests.dll
+D:\Softserve\TFS Workspace\LV-175.Net\Assessment\AssessmentsWeb.Tests\obj\Debug\AssessmentsWeb.Tests.pdb
